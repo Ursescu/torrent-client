@@ -2,7 +2,7 @@ CC := g++
 
 SRCDIR := src
 BUILDDIR := build
-INC := -lmath 
+INC := -lboost_system -lboost_date_time -lboost_thread -lpthread -lm 
 SRCEXT := cpp
 
 CPP_FILES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
@@ -17,7 +17,7 @@ all: program
 
 program: $(O_FILES)
 		@echo "Link object files ..."
-		@echo "$(CC) -o $@ $^"; $(CC) -o $@ $^
+		@echo "$(CC) -o $@ $^"; $(CC) -o $@ $^ $(INC) 
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 		@echo "Compile time ..."
