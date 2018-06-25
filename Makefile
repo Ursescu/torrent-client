@@ -13,11 +13,14 @@ CFLAGS := -g #-std=c++11 # -Wall
 .PHONY: all clean
 .DEFAULT: all
 
-all: program
+all: $(BUILDDIR) | program
 
 program: $(O_FILES)
 		@echo "Link object files ..."
 		@echo "$(CC) -o $@ $^"; $(CC) -o $@ $^ $(INC) 
+
+$(BUILDDIR):
+	mkdir -p $@
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 		@echo "Compile time ..."
