@@ -5,8 +5,10 @@
 #include <sstream>
 #include <thread>
 
+// clang-format off
 #include "libtorrent_deps.hpp"
 #include "console_gui.hpp"
+// clang-format on
 
 #define TORRENT_PATH "./torrents/"
 
@@ -44,8 +46,7 @@ int main(int argc, char const* argv[]) {
 
   std::vector<lt::torrent_handle> handlers;
 
-
-  for (lt::add_torrent_params const &a : torrents_to_add) {
+  for (lt::add_torrent_params const& a : torrents_to_add) {
     lt::torrent_handle h =
         ses.add_torrent(a, ec);  // Add the torrent in sync mode, consider
                                  // async_add_torrent in future
@@ -58,7 +59,6 @@ int main(int argc, char const* argv[]) {
       handlers.push_back(h);
     }
   }
-
 
   // Attempt to understand alert system, still need research
 
@@ -95,7 +95,7 @@ int main(int argc, char const* argv[]) {
       }
     }
 
-    //Slow down 
+    // Slow down
     std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
     ses.post_torrent_updates();
